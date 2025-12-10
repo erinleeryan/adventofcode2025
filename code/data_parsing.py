@@ -20,13 +20,16 @@ def read_lines_of_ints(inputfile, otype='list'):
     if otype == 'numpy':
         return np.array(data)
 
-def read_2dmap_to_numpy(inputfile):
+def read_2dmap_to_numpy(inputfile, split_by_spaces=False):
     f = open("../data/"+inputfile, "r")
     data = f.read().splitlines()
 
     map2d = []
     for line in data:
-        line_steps = list(line)
+        if split_by_spaces == False:
+            line_steps = list(line)
+        if split_by_spaces == True:
+            line_steps = list(line.split())
         map2d.append(line_steps)
 
     map2d = np.array(map2d)
